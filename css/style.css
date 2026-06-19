@@ -35,6 +35,37 @@
   --ease-in:  cubic-bezier(0.55, 0, 1, 0.45);
 }
 
+[data-theme="light"] {
+  --ink:     #010101;
+  --ink-2:   #3a3a3a;
+  --ink-3:   #888888;
+  --paper:   #f5f2ed;
+  --paper-2: #ede9e1;
+  --paper-3: #e4dfd6;
+  --paper-4: #d8d2c8;
+  --dark:    #0e0e1a;
+  --dark-2:  #141428;
+  --dark-3:  #1e1e3a;
+  --gold:    #c8a96e;
+  --gold-2:  #a8853e;
+  /* body bg/text stay as-is (paper + ink) — this is the default light theme */
+}
+
+[data-theme="dark"] {
+  --ink:     #f0ece4;
+  --ink-2:   #c8c2b8;
+  --ink-3:   #7a7468;
+  --paper:   #0e0e1a;
+  --paper-2: #141428;
+  --paper-3: #1e1e3a;
+  --paper-4: #2a2a48;
+  --dark:    #0e0e1a;
+  --dark-2:  #141428;
+  --dark-3:  #1e1e3a;
+  --gold:    #c8a96e;
+  --gold-2:  #d4b07a;
+}
+
 html {
   scroll-behavior: smooth;
   font-size: 16px;
@@ -88,6 +119,74 @@ button { background: none; border: none; font-family: inherit; }
               height 0.3s var(--ease),
               opacity 0.3s,
               border-color 0.2s;
+}
+
+/* ============================================================
+   THEME TOGGLE
+============================================================ */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--paper-4);
+  background: transparent;
+  color: var(--ink);
+  font-size: 0.9rem;
+  transition: border-color 0.3s, color 0.3s, background 0.3s, transform 0.2s;
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  border-color: var(--gold-2);
+  color: var(--gold-2);
+  transform: rotate(20deg);
+}
+
+/* Mobile version inside the mobile menu */
+.theme-toggle--mobile {
+  margin-top: 2rem;
+  width: 48px;
+  height: 48px;
+  font-size: 1.2rem;
+  border-color: var(--paper-3);
+  color: var(--ink);
+}
+
+/* Also fix the cursor mix-blend-mode in dark mode so the dot stays visible */
+[data-theme="dark"] #cursor {
+  mix-blend-mode: screen;
+}
+
+/* Work section text — hardcoded to var(--paper) which flips dark in dark mode */
+[data-theme="dark"] .project-title {
+  color: #f0ece4;
+}
+
+[data-theme="dark"] .work-title {
+  color: #f0ece4;
+}
+
+[data-theme="dark"] .project-desc {
+  color: #9a9490;
+}
+
+[data-theme="dark"] #testimonial {
+  background: #010101;
+  color: #f5f2ed;
+}
+
+[data-theme="dark"] #testimonial .testimonial-quote,
+[data-theme="dark"] #testimonial .quote-mark {
+  color: inherit;
+}
+
+/* Nav scrolled state for dark mode */
+[data-theme="dark"] #nav.scrolled {
+  background: rgba(0, 0, 0, 0.92);
+  box-shadow: 0 1px 0 var(--paper-4);
 }
 
 #cursor.hovered {
@@ -352,7 +451,7 @@ button { background: none; border: none; font-family: inherit; }
 }
 
 .hero-desc {
-  font-size: 1rem;
+  font-size: 1.3rem;
   font-weight: 300;
   line-height: 1.85;
   max-width: 380px;
@@ -551,7 +650,7 @@ button { background: none; border: none; font-family: inherit; }
 
 .section-number {
   font-family: var(--ff-mono);
-  font-size: 0.63rem;
+  font-size: 0.95rem;
   letter-spacing: 0.25em;
   color: var(--gold-2);
   margin-bottom: 1rem;
@@ -572,7 +671,7 @@ button { background: none; border: none; font-family: inherit; }
 .about-right { padding-top: 1rem; }
 
 .about-text {
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   font-weight: 300;
   line-height: 1.9;
   color: var(--ink-2);
@@ -604,7 +703,7 @@ button { background: none; border: none; font-family: inherit; }
 
 .skill-label {
   font-family: var(--ff-mono);
-  font-size: 0.58rem;
+  font-size: 0.65rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gold-2);
@@ -612,7 +711,7 @@ button { background: none; border: none; font-family: inherit; }
 }
 
 .skill-name {
-  font-size: 0.88rem;
+  font-size: 0.98rem;
   color: var(--ink-2);
 }
 
@@ -640,7 +739,7 @@ button { background: none; border: none; font-family: inherit; }
 
 .stat-label {
   font-family: var(--ff-mono);
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--ink-3);
@@ -662,7 +761,7 @@ button { background: none; border: none; font-family: inherit; }
   margin-bottom: 4rem;
 }
 
-.work-num { color: rgba(200, 169, 110, 0.5); }
+.work-num { color: var(--gold); }
 
 .work-title { color: var(--paper); }
 .work-title em { color: var(--gold); }
@@ -720,7 +819,7 @@ button { background: none; border: none; font-family: inherit; }
 
 .project-num {
   font-family: var(--ff-mono);
-  font-size: 0.6rem;
+  font-size: 0.70rem;
   letter-spacing: 0.25em;
   color: var(--gold);
   margin-bottom: 1.5rem;
@@ -736,7 +835,7 @@ button { background: none; border: none; font-family: inherit; }
 
 .project-desc {
   font-family: var(--ff-mono);
-  font-size: 0.68rem;
+  font-size: 0.80rem;
   letter-spacing: 0.03em;
   color: #888;
   line-height: 1.75;
@@ -837,7 +936,7 @@ button { background: none; border: none; font-family: inherit; }
   left: -14rem;
   top: 2.7rem;
   font-family: var(--ff-mono);
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   letter-spacing: 0.15em;
   color: var(--ink-3);
   text-transform: uppercase;
@@ -862,7 +961,7 @@ button { background: none; border: none; font-family: inherit; }
 }
 
 .timeline-desc {
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   font-weight: 300;
   line-height: 1.8;
   color: var(--ink-2);
@@ -886,7 +985,7 @@ button { background: none; border: none; font-family: inherit; }
 }
 
 .services-sub {
-  font-size: 1rem;
+  font-size: 1.6rem;
   font-weight: 300;
   line-height: 1.85;
   color: var(--ink-2);
@@ -917,7 +1016,7 @@ button { background: none; border: none; font-family: inherit; }
 }
 
 .service-title {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 400;
   color: var(--ink);
   margin-bottom: 0.9rem;
@@ -925,7 +1024,7 @@ button { background: none; border: none; font-family: inherit; }
 
 .service-desc {
   font-family: var(--ff-mono);
-  font-size: 0.68rem;
+  font-size: 0.85rem;
   letter-spacing: 0.02em;
   line-height: 1.85;
   color: var(--ink-3);
@@ -964,7 +1063,7 @@ button { background: none; border: none; font-family: inherit; }
 
 .testimonial-author {
   font-family: var(--ff-mono);
-  font-size: 0.63rem;
+  font-size: 0.80rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--gold);
@@ -997,7 +1096,7 @@ button { background: none; border: none; font-family: inherit; }
 
 .contact-subtitle {
   font-family: var(--ff-mono);
-  font-size: 0.65rem;
+  font-size: 0.85rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--ink-3);
@@ -1018,14 +1117,14 @@ button { background: none; border: none; font-family: inherit; }
 
 .contact-label {
   font-family: var(--ff-mono);
-  font-size: 0.58rem;
+  font-size: 0.85rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--ink-3);
 }
 
 .contact-value {
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   color: var(--ink);
   transition: color 0.3s;
 }
@@ -1049,7 +1148,7 @@ a.contact-value:hover { color: var(--gold-2); }
 
 .form-label {
   font-family: var(--ff-mono);
-  font-size: 0.58rem;
+  font-size: 0.85rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--ink-3);
@@ -1061,7 +1160,7 @@ a.contact-value:hover { color: var(--gold-2); }
   border-bottom: 1px solid var(--paper-4);
   padding: 0.7rem 0;
   font-family: var(--ff-serif);
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 300;
   color: var(--ink);
   outline: none;
@@ -1148,14 +1247,14 @@ footer {
 
 .footer-logo {
   font-family: var(--ff-serif);
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: 300;
   color: var(--ink);
 }
 
 .footer-copy {
   font-family: var(--ff-mono);
-  font-size: 0.6rem;
+  font-size: 0.80rem;
   letter-spacing: 0.15em;
   color: var(--ink-3);
 }

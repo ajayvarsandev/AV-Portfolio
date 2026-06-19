@@ -403,3 +403,41 @@
 
   stats.forEach((el) => observer.observe(el));
 })();
+
+
+/* ============================================================
+   10. THEME TOGGLE — Dark / Light mode
+   Persists preference in localStorage.
+   Defaults to light (matches your existing palette).
+============================================================ */
+(function initThemeToggle() {
+  const STORAGE_KEY = 'portfolio-theme';
+  const html = document.documentElement;
+
+  const toggleBtns = [
+    document.getElementById('themeToggle'),
+    document.getElementById('themeToggleMobile'),
+  ].filter(Boolean);
+
+  function applyTheme(theme) {
+    html.setAttribute('data-theme', theme);
+    localStorage.setItem(STORAGE_KEY, theme);
+
+    const icon = theme === 'dark' ? '☽' : '☀';
+    toggleBtns.forEach((btn) => {
+      const iconEl = btn.querySelector('.theme-icon');
+      if (iconEl) iconEl.textContent = icon;
+    });
+  }
+
+  function toggleTheme() {
+    const current = html.getAttribute('data-theme') || 'light';
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+  }
+
+  // Load saved preference, default to light
+  const saved = localStorage.getItem(STORAGE_KEY) || 'light';
+  applyTheme(saved);
+
+  toggleBtns.forEach((btn) => btn.addEventListener('click', toggleTheme));
+})();
