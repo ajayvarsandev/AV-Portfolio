@@ -746,6 +746,199 @@ button { background: none; border: none; font-family: inherit; }
 }
 
 /* ============================================================
+   LEETCODE PROGRESS
+============================================================ */
+#leetcode {
+  padding: var(--section-pad);
+  background: var(--paper-2);
+}
+
+.leetcode-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 4rem;
+}
+
+.leetcode-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-bottom: 0.3rem;
+}
+
+.leetcode-live,
+.leetcode-refresh,
+.leetcode-kicker,
+.leetcode-updated,
+.leetcode-metric-label,
+.leetcode-subsection-heading,
+.leetcode-submissions time {
+  font-family: var(--ff-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.leetcode-live {
+  color: var(--gold-2);
+  font-size: 0.65rem;
+}
+
+.live-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 0.45rem;
+  border-radius: 50%;
+  background: #5c9f6c;
+  box-shadow: 0 0 0 4px rgba(92, 159, 108, 0.14);
+}
+
+.leetcode-refresh {
+  color: var(--ink-2);
+  font-size: 0.62rem;
+  transition: color 0.3s;
+}
+
+.leetcode-refresh:hover { color: var(--gold-2); }
+.leetcode-refresh:disabled { opacity: 0.5; }
+
+.leetcode-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1.9fr;
+  gap: 2px;
+}
+
+.leetcode-summary,
+.leetcode-metrics,
+.leetcode-recent {
+  background: var(--paper);
+  border: 1px solid var(--paper-3);
+}
+
+.leetcode-summary {
+  grid-row: span 2;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 18rem;
+}
+
+.leetcode-kicker {
+  color: var(--gold-2);
+  font-size: 0.7rem;
+}
+
+.leetcode-profile-link {
+  color: var(--ink-3);
+  font-family: var(--ff-mono);
+  font-size: 0.62rem;
+  margin-top: 0.6rem;
+}
+
+.leetcode-profile-link:hover { color: var(--gold-2); }
+
+.leetcode-total { margin-top: 3rem; }
+
+.leetcode-total-number {
+  display: block;
+  color: var(--ink);
+  font-size: clamp(3.5rem, 7vw, 6rem);
+  font-weight: 300;
+  line-height: 0.9;
+}
+
+.leetcode-total-label {
+  display: block;
+  margin-top: 1rem;
+  color: var(--ink-3);
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.leetcode-updated {
+  color: var(--ink-3);
+  font-size: 0.57rem;
+  line-height: 1.6;
+  margin-top: 2rem;
+}
+
+.leetcode-metrics {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 2rem;
+  gap: 1rem;
+}
+
+.leetcode-metric { border-right: 1px solid var(--paper-3); }
+.leetcode-metric:last-child { border-right: 0; }
+
+.leetcode-metric-value {
+  display: block;
+  color: var(--ink);
+  font-size: 2rem;
+  font-weight: 300;
+}
+
+.leetcode-metric-label {
+  display: block;
+  color: var(--ink-3);
+  font-size: 0.55rem;
+  line-height: 1.5;
+  margin-top: 0.45rem;
+}
+
+.leetcode-recent { padding: 2rem; }
+
+.leetcode-subsection-heading {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--gold-2);
+  font-size: 0.62rem;
+}
+
+.leetcode-subsection-rule {
+  height: 1px;
+  flex: 1;
+  background: var(--paper-3);
+}
+
+.leetcode-submissions { margin-top: 1rem; }
+
+.leetcode-submissions li {
+  border-top: 1px solid var(--paper-3);
+}
+
+.leetcode-submissions a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 0;
+  color: var(--ink-2);
+  font-size: 1rem;
+}
+
+.leetcode-submissions a:hover { color: var(--gold-2); }
+
+.leetcode-submissions time {
+  flex-shrink: 0;
+  color: var(--ink-3);
+  font-size: 0.55rem;
+}
+
+.leetcode-empty {
+  padding-top: 1rem;
+  color: var(--ink-3);
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+}
+
+/* ============================================================
    WORK / PROJECTS
 ============================================================ */
 #work {
@@ -1357,6 +1550,11 @@ body::after {
   .skills-grid { grid-template-columns: repeat(2, 1fr); }
 
   .projects-grid { grid-template-columns: 1fr; }
+  .leetcode-grid { grid-template-columns: 1fr; }
+  .leetcode-summary { grid-row: auto; }
+  .leetcode-metrics { grid-template-columns: repeat(3, 1fr); }
+  .leetcode-metric:nth-child(3) { border-right: 0; }
+  .leetcode-metric:nth-child(n + 4) { margin-top: 1rem; }
 
   .services-header { grid-template-columns: 1fr; gap: 1.5rem; }
   .services-grid   { grid-template-columns: 1fr; }
@@ -1398,5 +1596,12 @@ body::after {
   .skills-grid { grid-template-columns: 1fr 1fr; }
   #testimonial { padding: 5rem 1.5rem; }
   .work-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .leetcode-header { align-items: flex-start; flex-direction: column; gap: 1.5rem; }
+  .leetcode-actions { padding-bottom: 0; }
+  .leetcode-summary, .leetcode-metrics, .leetcode-recent { padding: 1.5rem; }
+  .leetcode-metrics { grid-template-columns: repeat(2, 1fr); }
+  .leetcode-metric:nth-child(3) { border-right: 1px solid var(--paper-3); }
+  .leetcode-metric:nth-child(even) { border-right: 0; }
+  .leetcode-submissions a { align-items: flex-start; flex-direction: column; gap: 0.35rem; }
   footer { padding: 2rem 1.5rem; }
 }
