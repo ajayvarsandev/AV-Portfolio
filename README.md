@@ -1,4 +1,4 @@
-# Ajay Varsan R — Portfolio
+# Ajay Varsan — Portfolio
 
 A classy editorial portfolio with scroll animations, custom cursor,
 parallax, and form validation. no frameworks has been used — just basic vanilla HTML, CSS, JS.
@@ -46,9 +46,9 @@ Search and replace these placeholders:
 | Find | Replace with |
 |------|--------------|
 | `Your Photo` | Your actual photo (see Step 3) |
-| `your@email.com` | `ajayvarsan207@gmail.com` |
-| `github.com/ajayvarsandev` | Your GitHub URL |
-| `linkedin.com/ajayvarsan` | Your LinkedIn URL |
+| `your@email.com` | `ajayvarsan2@gmail.com` |
+| `github.com/ajayvrsn` | Your GitHub URL |
+| `linkedin.com/ajayvarsanr` | Your LinkedIn URL |
 | `href="#"` on project cards | Your actual GitHub project links |
 
 ---
@@ -135,5 +135,5 @@ if (!response.ok) {
 1. Push the portfolio folder to a new GitHub repo
 2. Go to https://vercel.com → "Add New Project" → import your repo
 3. Vercel auto-detects it's a static site — click Deploy
-4. You get a live URL like `https://ajayvarsan.vercel.app`
+4. You get a live URL like `https://[your-domain-name].vercel.app`
 5. Optional: connect a custom domain in Vercel settings
